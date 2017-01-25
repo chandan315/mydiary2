@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('postgres://chandan:duvarko315@localhost:5432/diary');
+var sequelize = new Sequelize('postgresql-asymmetrical-24420');
 
 var User = sequelize.define('user', {
   username: {

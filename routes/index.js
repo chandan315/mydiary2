@@ -8,7 +8,7 @@ router.get('/index1', function(req, res, next) {
 if(req.isAuthenticated())
 {
   const pg = require('pg');
-  const connectionString = process.env.DATABASE_URL || 'postgres://chandan:duvarko315@localhost:5432/diary';
+  const connectionString = process.env.DATABASE_URL || 'postgresql-asymmetrical-24420';
   userId = req.user.name;
   const client = new pg.Client(connectionString);
   // Grab data from http request
@@ -69,7 +69,7 @@ router.post('/create', function(req, res, next) {
 if(req.isAuthenticated())
 {
 const pg = require('pg');
-const connectionString = process.env.DATABASE_URL || 'postgres://chandan:duvarko315@localhost:5432/diary';
+const connectionString = process.env.DATABASE_URL || 'postgresql-asymmetrical-24420';
 
 const client = new pg.Client(connectionString);
 userId = req.user.name;
@@ -139,7 +139,7 @@ router.post('/createCategory', function(req, res, next) {
 if(req.isAuthenticated())
 {
 const pg = require('pg');
-const connectionString = process.env.DATABASE_URL || 'postgres://chandan:duvarko315@localhost:5432/diary';
+const connectionString = process.env.DATABASE_URL || 'postgresql-asymmetrical-24420';
 
 const client = new pg.Client(connectionString);
 userId = req.user.name;
@@ -223,7 +223,7 @@ router.post('/delete', function(req, res, next) {
 if(req.isAuthenticated())
 {
   pg = require('pg');
-  connectionString = process.env.DATABASE_URL || 'postgres://chandan:duvarko315@localhost:5432/diary';
+  connectionString = process.env.DATABASE_URL || 'postgresql-asymmetrical-24420';
 
   client = new pg.Client(connectionString);
   userId = req.user.name;
@@ -287,7 +287,7 @@ router.get('/categories', function(req, res, next) {
 if(req.isAuthenticated())
 {
 const pg = require('pg');
-const connectionString = process.env.DATABASE_URL || 'postgres://chandan:duvarko315@localhost:5432/diary';
+const connectionString = process.env.DATABASE_URL || 'postgresql-asymmetrical-24420';
 
 const client = new pg.Client(connectionString);
 userId = req.user.name;
@@ -351,7 +351,7 @@ router.post('/deleteCategory', function(req, res, next) {
 if(req.isAuthenticated())
 {
   pg = require('pg');
-  connectionString = process.env.DATABASE_URL || 'postgres://chandan:duvarko315@localhost:5432/diary';
+  connectionString = process.env.DATABASE_URL || 'postgresql-asymmetrical-24420';
 
   client = new pg.Client(connectionString);
   userId = req.user.name;
@@ -417,7 +417,7 @@ router.get('/entries', function(req, res, next) {
 if(req.isAuthenticated())
 {
 const pg = require('pg');
-const connectionString = process.env.DATABASE_URL || 'postgres://chandan:duvarko315@localhost:5432/diary';
+const connectionString = process.env.DATABASE_URL || 'postgresql-asymmetrical-24420';
 
 const client = new pg.Client(connectionString);
 userId = req.user.name;
@@ -482,7 +482,7 @@ router.post('/deleteEntry', function(req, res, next) {
 if(req.isAuthenticated())
 {
   pg = require('pg');
-  connectionString = process.env.DATABASE_URL || 'postgres://chandan:duvarko315@localhost:5432/diary';
+  connectionString = process.env.DATABASE_URL || 'postgresql-asymmetrical-24420';
 
   client = new pg.Client(connectionString);
   userId = req.user.name;

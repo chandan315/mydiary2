@@ -10,7 +10,7 @@ router.get('/index2', function(req, res, next) {
 /* GET users listing. */
 router.post('/signup', function(req, res, next) {
   const pg = require('pg');
-const connectionString = process.env.DATABASE_URL || 'postgres://chandan:duvarko315@localhost:5432/diary';
+const connectionString = process.env.DATABASE_URL || 'postgresql-asymmetrical-24420';
 
 const client = new pg.Client(connectionString);
 
