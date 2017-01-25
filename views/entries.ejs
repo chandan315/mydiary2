@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>My Diary</title>
+	<link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+  <script src="javascripts/jquery.js" ></script>
+  <script src="javascripts/bootstrap.min.js"></script>  
+  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.13/js/dataTables.jqueryui.min.js"></script>
+   
+  <link id="stylesheetToReplace" rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/redmond/jquery-ui.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.jqueryui.min.css ">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+	
+</head>
+<body id="bodyId" style="display:none;">
+<script type="text/javascript">
+
+$(document).ready(function(){  
+  $("#bodyId").fadeIn(2000);  
+  $(".container").show();
+  $( "#welcomeMessage" ).slideUp( 5000 );     
+  $("#entry").hide();
+  $("#category").hide();       
+  
+  $("#div2").hide();          
+  $("#div1").hide();          
+
+  $( "#div1" ).fadeIn( 2000 );
+  $( "#div2" ).fadeIn( 4000 );
+
+ $('#dataTable').DataTable({
+        "ordering": false,
+        "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+    });
+});
+
+  function showEntryDiv(){             
+      $("#content").show();
+      $("#entry").fadeIn(2000);        
+      $("#category").hide();          
+  };
+  function showCategoryDiv(){       
+      $("#content").show();
+      $("#category").fadeIn(2000);         
+      $("#entry").hide();         
+  };  
+
+  function setTodayDate(){    
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+
+  var yyyy = today.getFullYear();
+  if(dd<10){
+      dd='0'+dd;
+  } 
+  if(mm<10){
+      mm='0'+mm;
+  } 
+  var today = dd+'/'+mm+'/'+yyyy;  
+  $("#txtDateEntered").val(today);
+  };
+</script>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index1">My Diary</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">        
+       <li><a href="/entries">Entries</a></li>      
+        <li><a href="/categories">Categories</a></li>      
+        </ul>
+        </li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">      
+      <% if (!req.user) { %>            
+        <li><a href="/signup">Sign Up</a></li>
+        <li><a href="/login">Login</a></li>      
+      <% } else { %>
+        <li><a href="#">Hello <%= userId %></a></li>
+        <li><a href="/logout">Logout</a></li>
+      <% } %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+    </nav>
+    
+<div class="container" style="display:none;">
+<!-- Button trigger modal -->
+<div>
+      
+
+      <div id="div1">
+                                        
+               <table class="display" id="dataTable">
+          <thead>
+            <tr>
+                <th>Your Diary Entries</th>                
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Your Diary Entries</th>
+            </tr>
+        </tfoot>
+           <% resultsToShow.forEach(function(entry) { %>                          
+          <tr>
+          <td>
+          <form method="post" action="/deleteEntry">           
+           <span class="label label-primary" style="font-size:13px;" id="entry1"><%= entry.text %></span>
+           <span class="label label-default" style="font-size:11px;"><%= entry.dateentered.toDateString() %></span>
+                                            
+           <input type="hidden" id="entry_id" value="<%= entry.id %>" name="entry_id" />
+           
+           <button type="submit" class="btn btn-sm" name="entry_delete" title="Delete Entry" >
+               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+           </button>
+
+           </form>
+           </td>
+           </tr>           
+           
+                    <% }); %>    
+
+           </table>
+      </div>          
+</div>
+</div>
+</body>
+</html>

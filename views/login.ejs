@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>My Diary</title>
+  <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+  <script src="javascripts/jquery.js" ></script>
+  <script src="javascripts/bootstrap.min.js"></script>  
+  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.13/js/dataTables.jqueryui.min.js"></script>
+   
+  <link id="stylesheetToReplace" rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/redmond/jquery-ui.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.jqueryui.min.css ">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+  
+</head>
+<body id="bodyId" style="display:none;">
+<script type="text/javascript">
+
+$(document).ready(function(){  
+  $("#bodyId").fadeIn(2000);  
+  $(".container").show();
+});
+
+  
+</script>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/index1">My Diary</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">        
+        <li><a href="/entries">Entries</a></li>      
+        <li><a href="/categories">Categories</a></li>      
+        </ul>
+        
+      
+      <ul class="nav navbar-nav navbar-right">      
+      <% if (!req.user) { %>            
+        <li><a href="/signup">Sign Up</a></li>
+        <li><a href="/login">Login</a></li>      
+      <% } else { %>
+        <li><a href="#">Hello <%= userId %></a></li>
+        <li><a href="/logout">Logout</a></li>
+      <% } %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+    </nav>
+    
+<div class="container" style="display:none;">
+
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+        <form class="form-horizontal" method="post" action="/login">
+        <h4>Use a local account to log in.</h4>
+        <hr />
+            <div class="form-group">
+                <label for="username" class="col-sm-2 control-label">Username</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password" class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-5">
+                  <input type="password" class="form-control"  name="password" id="password" placeholder="Password" >
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-5">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Remember me
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                 <div class="col-sm-offset-2 col-sm-5">
+                   <button type="submit" class="btn btn-default">Sign in</button>
+                 </div>
+              </div>
+        </form>
+        </section>
+    </div>    
+</div>
+</div>
+</body>
+</html>
+
+
+
