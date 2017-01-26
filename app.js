@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
 var index = require('./routes/index');
 var users = require('./routes/users');
-var User = require('./routes/sq');
+var Users = require('./routes/sq');
 var passport = require('passport')
 var passportLocal = require('passport-local');
 var expressSession = require('express-session');
@@ -43,7 +43,7 @@ app.use(expressSession({
 
 
 passport.use(new passportLocal.Strategy(function(username,password, done){
-  User.findOne({where : {username: username, password: password}}).then(function (user) {      
+  Users.findOne({where : {username: username, password: password}}).then(function (user) {      
       if(user)
         {        
             done(null,{ id:username, name:username });          
